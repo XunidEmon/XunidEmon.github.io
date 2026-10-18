@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xunid Emon| Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==================== GLOBAL ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        :root {
+            --primary: #00ff88;
+            --primary-dark: #00cc6a;
+            --bg-dark: #050505;
+            --bg-card: rgba(26, 26, 26, 0.6);
+            --border: rgba(0, 255, 136, 0.15);
+            --text: #e0e0e0;
+            --text-muted: #8a8a8a;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: -20%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.08), transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: blobMove 15s ease-in-out infinite;
+        }
+        @keyframes blobMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-100px, 100px) scale(1.2); }
+        }
+        a { text-decoration: none; color: inherit; }
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* ==================== SECTION TITLE ==================== */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+        .section-title span {
+            background: linear-gradient(135deg, var(--primary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            border-radius: 2px;
+            animation: underlinePulse 2s infinite;
+        }
+        @keyframes underlinePulse {
+            0%, 100% { width: 70px; opacity: 1; }
+            50% { width: 120px; opacity: 0.6; }
+        }
+
+        /* ==================== NAVBAR ==================== */
+        nav {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            padding: 18px 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        nav.scrolled {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .logo:hover { filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.5)); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--primary), #00d4ff);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ==================== HERO ==================== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 130px 25px 80px;
+            position: relative;
+        }
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .hero-image-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--primary), #00d4ff, var(--primary));
+            animation: rotateRing 4s linear infinite;
+            z-index: 0;
+            opacity: 0.6;
+        }
+        .hero-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            z-index: 1;
+        }
+        @keyframes rotateRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hero-content img {
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            position: relative;
+            z-index: 2;
+            display: block;
+            border: 3px solid var(--bg-dark);
+            transition: all 0.4s;
+        }
+        .hero-content img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease 0.1s both;
+        }
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--primary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-content h2 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            font-weight: 400;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .hero-content p {
+            max-width: 620px;
+            margin: 0 auto 35px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary), #00d4ff);
+            color: #050505;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.25);
+        }
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #050505;
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== GENERIC SECTION ==================== */
+        section { padding: 100px 0; position: relative; }
+        section:nth-child(even) { background: rgba(15, 15, 15, 0.5); }
+
+        /* ==================== ABOUT ==================== */
+        .about-text {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            padding: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+        }
+        .about-text:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 255, 136, 0.1);
+        }
+
+        /* ==================== EDUCATION ==================== */
+        .edu-item {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            max-width: 750px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            position: relative;
+            transition: all 0.4s;
+            overflow: hidden;
+        }
+        .edu-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 5px; height: 100%;
+            background: linear-gradient(180deg, var(--primary), #00d4ff);
+        }
+        .edu-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 255, 136, 0.15);
+            border-color: var(--primary);
+        }
+        .edu-item h3 { color: #fff; font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+        .edu-item h4 { color: var(--primary); font-size: 0.95rem; margin-bottom: 12px; font-weight: 500; }
+        .edu-item p { color: var(--text-muted); font-size: 0.95rem; }
+        .edu-item p strong { color: #fff; }
+
+        /* ==================== SKILLS & PROJECTS ==================== */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.08), transparent);
+            transition: left 0.6s;
+        }
+        .card:hover::before { left: 100%; }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 255, 136, 0.15);
+        }
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 212, 255, 0.1));
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 18px;
+            transition: all 0.3s;
+        }
+        .card:hover .card-icon {
+            background: linear-gradient(135deg, var(--primary), #00d4ff);
+            color: #050505;
+            transform: rotate(5deg) scale(1.1);
+        }
+        .card h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ==================== EXPERIENCE TIMELINE ==================== */
+        .timeline {
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), #00d4ff, transparent);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+            padding: 25px 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 30px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+            border: 3px solid var(--bg-dark);
+        }
+        .timeline-item:hover {
+            transform: translateX(8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.12);
+        }
+        .timeline-item:hover::before {
+            animation: pulseDot 1.5s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { box-shadow: 0 0 15px var(--primary); }
+            50% { box-shadow: 0 0 30px var(--primary), 0 0 45px var(--primary); }
+        }
+        .timeline-item h3 { color: #fff; font-size: 1.1rem; margin-bottom: 5px; font-weight: 600; }
+        .timeline-item h4 { color: var(--primary); font-size: 0.9rem; margin-bottom: 10px; font-weight: 500; }
+        .timeline-item p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* ==================== ACHIEVEMENTS ==================== */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        .achievement-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+        }
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 25px 60px rgba(0, 255, 136, 0.2);
+        }
+        .achievement-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        .achievement-card:hover img { transform: scale(1.08); }
+        .achievement-info { padding: 25px; }
+        .achievement-info h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .achievement-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .achievement-info p strong { color: #fff; }
+
+        /* ==================== GALLERY ==================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 255, 136, 0.2);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.6s;
+            display: block;
+        }
+        .gallery-item:hover img { transform: scale(1.12); }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%;
+            padding: 30px 20px 15px;
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.98), transparent);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+        .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+        /* ==================== CONTACT ==================== */
+        #contact {
+            text-align: center;
+            padding: 100px 0;
+        }
+        #contact .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-info {
+            width: 100%;
+            max-width: 700px;
+            background: var(--bg-card);
+            padding: 45px 35px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+        }
+        .contact-info:hover {
+            border-color: var(--primary);
+            box-shadow: 0 25px 60px rgba(0, 255, 136, 0.1);
+        }
+        .contact-info p {
+            margin: 15px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s;
+        }
+        .contact-info p i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            width: 20px;
+        }
+        .contact-info p:hover { color: var(--primary); }
+        .contact-info a { color: var(--primary); transition: all 0.3s; }
+        .contact-info a:hover { text-decoration: underline; }
+        .social-links {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-links a {
+            color: #fff;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .social-links a:hover {
+            color: #050505;
+            background: linear-gradient(135deg, var(--primary), #00d4ff);
+            transform: translateY(-8px) scale(1.15);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+            border-color: transparent;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #050505;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        footer span { color: var(--primary); }
+
+        /* ==================== SCROLL REVEAL ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+        }
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.6rem; white-space: normal; padding: 0 10px; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content h2 { font-size: 1rem; }
+            .hero-content img { width: 160px; height: 160px; }
+            .hero-image-wrapper::before { inset: -6px; }
+            .hero-image-wrapper::after { inset: -3px; }
+            .timeline { padding-left: 25px; }
+            .timeline-item::before { left: -22px; width: 12px; height: 12px; }
+            .contact-info { padding: 30px 20px; }
+            .social-links a { width: 48px; height: 48px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">Emon.</div>
+            <div class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#projects">Projects</a>
+                <a href="#gallery">Workshops</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="hero-image-wrapper">
+                <img src="https://uploads.onecompiler.io/452pzzdff/1790024661433/WhatsApp%20Image%202026-09-22%20at%2003.03.14.jpeg" alt="Md. Asadus Zaman Emon">
+            </div>
+            <h1>Md. Asadus <span>Zaman Emon</span></h1>
+            <h2>Embedded Systems & VLSI Enthusiast</h2>
+            <p>Passionate about Tiny AI/ML, IoT, and semiconductor technologies. Currently pursuing B.Sc. in EEE at University of Asia Pacific.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn"><i class="fas fa-paper-plane"></i> Contact Me</a>
+                <a href="https://www.linkedin.com/in/md-asadus-zaman-emon-048182191/" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section id="about" class="reveal">
+        <div class="container">
+            <h2 class="section-title">About <span>Me</span></h2>
+            <div class="about-text">
+                <p>I am an Embedded Systems & VLSI Enthusiast with a strong passion for AI-driven hardware and energy-efficient chips. I love mentoring junior students and conducting hands-on workshops. My goal is to become a Senior Embedded Systems Engineer or VLSI Design Engineer, leading innovative semiconductor projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EDUCATION ==================== -->
+    <section id="education" class="reveal">
+        <div class="container">
+            <h2 class="section-title">My <span>Education</span></h2>
+            <div class="edu-item">
+                <h3>B.Sc. in Electrical and Electronics Engineering (EEE)</h3>
+                <h4>University of Asia Pacific (UAP) | 3rd Year Running</h4>
+                <p><strong>CGPA:</strong> 3.46</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SKILLS ==================== -->
+    <section id="skills" class="reveal">
+        <div class="container">
+            <h2 class="section-title">My <span>Skills</span></h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>Programming</h3>
+                    <p>C, Embedded C, Python, MATLAB</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Embedded Systems</h3>
+                    <p>GPIO, Timers, Interrupts, PWM, UART, SPI, I2C</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Hardware</h3>
+                    <p>Arduino, Raspberry Pi, Sensor Interfacing, ESP-32</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Tools</h3>
+                    <p>Git, GitHub, VS Code, Arduino IDE, Simulink, EasyEDA</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-users"></i></div>
+                    <h3>Soft Skills</h3>
+                    <p>Leadership, Mentorship, Problem Solving, Technical Communication</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EXPERIENCE ==================== -->
+    <section id="experience" class="reveal">
+        <div class="container">
+            <h2 class="section-title">My <span>Experience</span></h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <h3>General Secretary (2nd Term)</h3>
+                    <h4>Programming & AI Club of EEE, UAP | 25 July 2026 – Present</h4>
+                    <p>Continuing to lead club operations, strategize technical and collaborative events, and mentor junior members in programming and AI initiatives.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>General Secretary (1st Term)</h3>
+                    <h4>Programming & AI Club of EEE, UAP | 5 Jan 2026 – 11 May 2026</h4>
+                    <p>Led club operations, strategized technical and collaborative events, and mentored junior members in programming and AI initiatives.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Technical Lead</h3>
+                    <h4>Programming & AI Club of EEE, UAP | Sep 2025 – Jan 2026</h4>
+                    <p>Organized and conducted a 6-session "C Programming Bootcamp" for 50+ students.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Technical Member</h3>
+                    <h4>UAP EEE Project Club | Jan 2025 – Aug 2025</h4>
+                    <p>Guided teams in building and testing functional Line Following Robots, ensuring successful completion.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Instructor – Code to Cloud: Full-Stack Web Development & IoT Integration Workshop</h3>
+                    <h4>University of Asia Pacific | 2026</h4>
+                    <p>Conducted hands-on workshop on Embedded Programming.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Instructor – Embedded Programming 1.0 Workshop</h3>
+                    <h4>University of Asia Pacific | 2026</h4>
+                    <p>Conducted hands-on workshop on Embedded Programming.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Instructor – Line Following Robot (LFR) Workshop</h3>
+                    <h4>University of Asia Pacific | 2026</h4>
+                    <p>Conducted hands-on workshop on Line Following Robot.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Co-Instructor – C Programming Bootcamp</h3>
+                    <h4>University of Asia Pacific | 2025</h4>
+                    <p>Assisted in conducting the C Programming Bootcamp.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ACHIEVEMENTS ==================== -->
+    <section id="achievements" class="reveal">
+        <div class="container">
+            <h2 class="section-title">My <span>Achievements</span></h2>
+            <div class="achievement-grid">
+                
+                <div class="achievement-card">
+                    <img src="https://uploads.onecompiler.io/452pzzdff/1790026301723/WhatsApp%20Image%202026-08-13%20at%2014.28.27.jpeg" alt="Embedded Programming Workshop 1.0">
+                    <div class="achievement-info">
+                        <h3>Embedded Programming Workshop 1.0</h3>
+                        <p><strong>Certificate of Appreciation</strong> – For conducting the workshop successfully at University of Asia Pacific.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <img src="https://uploads.onecompiler.io/452pzzdff/1790026269979/WhatsApp%20Image%202026-08-13%20at%2014.28.26.jpeg" alt="ISIF 2025 Bali, Indonesia">
+                    <div class="achievement-info">
+                        <h3>ISIF 2025 – Bali, Indonesia</h3>
+                        <p>Represented Bangladesh at the International Science and Invention Fair (ISIF) 2025. <strong>Bangladesh Region – Runners Up.</strong></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS ==================== -->
+    <section id="projects" class="reveal">
+        <div class="container">
+            <h2 class="section-title">My <span>Projects</span></h2>
+            <div class="grid-3">
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Line Following Robot (LFR)</h3>
+                    <p>Built and tested a functional Line Following Robot using Arduino and IR sensors for autonomous navigation.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Smart Energy Meter with Fire Protection</h3>
+                    <p>Developed a smart energy meter that monitors power consumption and includes a fire detection & protection system for safety.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Portable Attendance System</h3>
+                    <p>A low-power embedded architecture based portable attendance system with cloud synchronization for real-time data access.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-lock"></i></div>
+                    <h3>IoT Based Door Lock</h3>
+                    <p>Designed a smart door lock system using IoT technology, allowing remote access and monitoring via mobile app.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-traffic-light"></i></div>
+                    <h3>Autonomous Traffic Management System</h3>
+                    <p>An intelligent traffic management system that autonomously controls traffic signals based on real-time vehicle density.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-fire-extinguisher"></i></div>
+                    <h3>Analog Integrated Relay for Gas Detection</h3>
+                    <p>Designed an analog integrated relay circuit for detecting gas leakage and automatically triggering safety measures.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ==================== -->
+    <section id="gallery" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Workshop <span>Gallery</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://uploads.onecompiler.io/452pzzdff/1790025053354/Image%2026.jpeg" alt="Embedded Programming Workshop 1.0">
+                    <div class="gallery-caption">Embedded Programming Workshop 1.0</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://uploads.onecompiler.io/452pzzdff/1790025317856/Image%2028.jpeg" alt="ESP32 Cloud Integration">
+                    <div class="gallery-caption">ESP32 to Cloud Server Integration (Embedded Workshop)</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://uploads.onecompiler.io/452pzzdff/1790025460364/Image%2029.jpeg" alt="Wokwi Simulation">
+                    <div class="gallery-caption">ESP32 & OLED Simulation (Wokwi)</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://uploads.onecompiler.io/452pzzdff/1790025715457/Image%2033.jpeg" alt="LFR Workshop">
+                    <div class="gallery-caption">LFR Workshop</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://uploads.onecompiler.io/452pzzdff/1790025624567/Image%2031.jpeg" alt="Line Follower Robot Workshop">
+                    <div class="gallery-caption">Line Follower Robot Workshop</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://uploads.onecompiler.io/452pzzdff/1790025758826/Image%2034.jpeg" alt="LFR Workshop">
+                    <div class="gallery-caption">LFR Workshop</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Get In <span>Touch</span></h2>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> +8801773553900</p>
+                <p><i class="fas fa-clock"></i> Available: Saturday &amp; Sunday, 8:00 PM – 12:00 PM</p>
+                <p><i class="fas fa-map-marker-alt"></i> 82/2D Firoja Kuncho, West Rajabazar, Farmgate, Dhaka-1215</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:mdxunidemon@icloud.com">mdxunidemon@icloud.com</a></p>
+                <div class="social-links">
+                    <a href="https://github.com/XunidEmon" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.facebook.com/xunidemon" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/md-asadus-zaman-emon-048182191/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <p>&copy; 2026 Md. Asadus Zaman Emon. All Rights Reserved. Built with <span>&hearts;</span></p>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+
+</body>
+</html>
